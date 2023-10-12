@@ -21,13 +21,13 @@
 <div style="margin-left: 20px ; margin-top: 10px">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">NhanVien</a>
+            <a class="nav-link active" aria-current="page" href="/nhan-vien/hien-thi">NhanVien</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">SanPhẩm</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Khách Hàng </a>
+            <a class="nav-link" href="/khach-hang/hien-thi">Khách Hàng </a>
         </li>
     </ul>
     <p>
@@ -36,24 +36,24 @@
         <a href="/chuc-vu/hien-thi">chức vụ </a>
     </p>
     <br>
-    <form method="post" action="/cua-hang/add" style="display: flex">
+    <form method="post" action="/nhan-vien/add" style="display: flex">
         <div style="float: left">
-            <p>id : <input type="text" value="${chs.id}" name="id" readonly></p>
-            <p> mã : <input type="text" value="${chs.ma}" name="ma"></p>
-            <p> họ : <input type="text" value="${chs.ma}" name="ho"></p>
-            <p> tên : <input type="text" value="${chs.ma}" name="ten"></p>
-            <p> tên đệm : <input type="text" value="${chs.ma}" name="tenDem"></p>
+            <p>id : <input type="text" value="${nvs.id}" name="id" readonly></p>
+            <p> mã : <input type="text" value="${nvs.ma}" name="ma"></p>
+            <p> họ : <input type="text" value="${nvs.ho}" name="ho"></p>
+            <p> tên : <input type="text" value="${nvs.ten}" name="ten"></p>
+            <p> tên đệm : <input type="text" value="${nvs.tenDem}" name="tenDem"></p>
             <p> giới tính :
-                <input type="radio" value="nam" name="gioiTinh"> nam
-                <input type="radio" value="nữ" name="gioiTinh"> nữ
+                <input type="radio" value="nam" ${nvs.gioiTinh == "nam" ? "checked" : ""} name="gioiTinh"> nam
+                <input type="radio" value="nữ" ${nvs.gioiTinh == "nữ" ? "checked" : ""} name="gioiTinh"> nữ
             </p>
-            <p> ngày sinh : <input type="text" value="${chs.ma}" name="ngaySinh"></p>
+            <p> ngày sinh : <input type="text" value="${nvs.ngaysinh}" name="ngaySinh"></p>
         </div>
 
         <div style="float: left ; margin-left: 30px">
-            <p> địa chỉ : <input type="text" value="${chs.ma}" name="diaChi"></p>
-            <p> SĐT : <input type="text" value="${chs.ma}" name="sdt"></p>
-            <p> mật khẩu  : <input type="text" value="${chs.ma}" name="matKhau"></p>
+            <p> địa chỉ : <input type="text" value="${nvs.diaChi}" name="diaChi"></p>
+            <p> SĐT : <input type="text" value="${nvs.sdt}" name="sdt"></p>
+            <p> mật khẩu : <input type="password" value="${nvs.matKhau}" name="matKhau"></p>
             <p>chức vụ :
                 <select name="chucVu">
                     <c:forEach var="cv" items="${cv}">
@@ -68,18 +68,17 @@
                     </c:forEach>
                 </select>
             </p>
-            <p> trạng thái  :
-                <input type="radio" value="0" name="trangThai"> đang đi làm
-                <input type="radio" value="1" name="trangThai"> nghỉ làm
+            <p> trạng thái :
+                <input type="radio" value="0" ${nvs.trangThai == 0 ? "checked" : ""} name="trangThai"> đang đi làm
+                <input type="radio" value="1" ${nvs.trangThai == 1 ? "checked" : ""} name="trangThai"> nghỉ làm
             </p>
             <button style="height: 30px">Add</button>
-            <button formaction="/cua-hang/update" style="height: 30px">update</button>
+            <button formaction="/nhan-vien/update" style="height: 30px">update</button>
         </div>
 
 
-
     </form>
-    <button ><a href="/cua-hang/hien-thi">hiển thị</a></button>
+    <button><a href="/nhan-vien/hien-thi">hiển thị</a></button>
     <br>
     <table>
         <tr>
@@ -109,18 +108,18 @@
                 <td>${nv.idCh.ten}</td>
                 <td>${nv.trangThai == 0 ? "đang làm" : "nghỉ làm"}</td>
                 <td>
-                    <button><a href="/cua-hang/remover/">delete</a></button>
-                    <button><a href="/cua-hang/detail/">detail</a></button>
+                    <button><a href="/nhan-vien/remover/${nv.id}">delete</a></button>
+                    <button><a href="/nhan-vien/detail/${nv.id}">detail</a></button>
                 </td>
             </tr>
         </c:forEach>
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="">Fist</a></li>
-            <li class="page-item"><a class="page-link" href="">Back</a></li>
-            <li class="page-item"><a class="page-link" href="">Next</a></li>
-            <li class="page-item"><a class="page-link" href="">Last</a></li>
+            <li class="page-item"><a class="page-link" href="/nhan-vien/hien-thi?p=0">Fist</a></li>
+            <li class="page-item"><a class="page-link" href="/nhan-vien/hien-thi?p=${nv.number - 1}">Back</a></li>
+            <li class="page-item"><a class="page-link" href="/nhan-vien/hien-thi?p=${nv.number + 1}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="/nhan-vien/hien-thi?p=${nv.totalPages - 1}">Last</a></li>
         </ul>
     </nav>
 </div>

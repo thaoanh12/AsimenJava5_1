@@ -20,13 +20,13 @@
 <div style="margin-left: 20px ; margin-top: 10px">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">NhanVien</a>
+            <a class="nav-link active" aria-current="page" href="/nhan-vien/hien-thi">NhanVien</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">SanPhẩm</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Khách Hàng </a>
+            <a class="nav-link" href="/khach-hang/hien-thi">Khách Hàng </a>
         </li>
     </ul>
     <p>
