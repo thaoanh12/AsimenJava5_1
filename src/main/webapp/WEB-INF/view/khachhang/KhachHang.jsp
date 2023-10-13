@@ -24,12 +24,14 @@
             <a class="nav-link active" aria-current="page" href="/nhan-vien/hien-thi">NhanVien</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">SanPhẩm</a>
+            <a class="nav-link" href="/san-pham/hien-thi">SanPhẩm</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/khach-hang/hien-thi">Khách Hàng </a>
         </li>
     </ul>
+    <br>
+    <h2>khách hàng</h2>
     <br>
     <form method="post" action="/khach-hang/add" style="display: flex">
         <div style="float: left">

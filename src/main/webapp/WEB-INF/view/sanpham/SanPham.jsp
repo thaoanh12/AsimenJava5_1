@@ -30,56 +30,49 @@
         </li>
     </ul>
     <p>
-        <a href="/nhan-vien/hien-thi">nhân viên </a>/
-        <a href="/cua-hang/hien-thi">cửa hàng </a>/
-        <a href="/chuc-vu/hien-thi">chức vụ </a>
+        <a href="/san-pham/hien-thi">sản phẩm  </a>/
+        <a href="/mau-sac/hien-thi">màu sắc  </a>/
+        <a href="/nsx-hien-thi">nsx </a>/
+        <a href="/dongsp/hien-thi">dòng sản phẩm  </a>/
+        <a href="/chi-tiet-san-pham/hien-thi">chi tiết sản phẩm  </a>
     </p>
     <br>
-    <h2>cửa hàng </h2>
+    <h2>sản phẩm  </h2>
     <br>
-    <form method="post" action="/cua-hang/add">
-        <p>id : <input type="text" value="${chs.id}" name="id" readonly></p>
-        <p> mã : <input type="text" value="${chs.ma}" name="ma"></p>
-        <p> tên : <input type="text" value="${chs.ten}" name="ten"></p>
-        <p> địa chỉ : <input type="text" value="${chs.diaChi}" name="diaChi"></p>
-        <p> thành phố : <input type="text" value="${chs.thanhPho}" name="thanhPho"></p>
-        <p> quốc gia  : <input type="text" value="${chs.quocGia}" name="quocGia"></p>
+    <form method="post" action="/san-pham/add">
+        <p>id : <input type="text" value="${nsxs.id}" name="id" readonly></p>
+        <p> mã : <input type="text" value="${nsxs.ma}" name="ma"></p>
+        <p> tên : <input type="text" value="${nsxs.ten}" name="ten"></p>
         <button>Add</button>
-        <button formaction="/cua-hang/update">update</button>
+        <button formaction="/san-pham/update">update</button>
     </form>
-    <button><a href="/cua-hang/hien-thi">hiển thị</a></button>
+    <button><a href="/san-pham/hien-thi">hiển thị </a></button>
     <br>
     <table>
         <tr>
             <td>id</td>
             <td>mã</td>
             <td>Tên</td>
-            <td>địa chỉ </td>
-            <td>thành phố </td>
-            <td>quốc gia </td>
             <td>Action</td>
         </tr>
-        <c:forEach var="ch" items="${ch.content}">
+        <c:forEach var="nsx" items="${nsx.content}">
             <tr>
-                <td>${ch.id}</td>
-                <td>${ch.ma}</td>
-                <td>${ch.ten}</td>
-                <td>${ch.diaChi}</td>
-                <td>${ch.thanhPho}</td>
-                <td>${ch.quocGia}</td>
+                <td>${nsx.id}</td>
+                <td>${nsx.ma}</td>
+                <td>${nsx.ten}</td>
                 <td>
-                    <button><a href="/cua-hang/remover/${ch.id}">delete</a></button>
-                    <button><a href="/cua-hang/detail/${ch.id}">detail</a></button>
+                    <button><a href="/san-pham/remover/${nsx.id}">delete</a></button>
+                    <button><a href="/san-pham/detail/${nsx.id}">detail</a></button>
                 </td>
             </tr>
         </c:forEach>
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="/cua-hang/hien-thi?p=0">Fist</a></li>
-            <li class="page-item"><a class="page-link" href="/cua-hang/hien-thi?p=${ch.number - 1}">Back</a></li>
-            <li class="page-item"><a class="page-link" href="/cua-hang/hien-thi?p=${ch.number + 1}">Next</a></li>
-            <li class="page-item"><a class="page-link" href="/cua-hang/hien-thi?p=${ch.totalPages - 1}">Last</a></li>
+            <li class="page-item"><a class="page-link" href="/san-pham/hien-thi?p=0">Fist</a></li>
+            <li class="page-item"><a class="page-link" href="/san-pham/hien-thi?p=${nsx.number - 1}">Back</a></li>
+            <li class="page-item"><a class="page-link" href="/san-pham/hien-thi?p=${nsx.number + 1}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="/san-pham/hien-thi?p=${nsx.totalPages - 1}">Last</a></li>
         </ul>
     </nav>
 </div>

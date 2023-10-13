@@ -24,7 +24,7 @@
             <a class="nav-link active" aria-current="page" href="/nhan-vien/hien-thi">NhanVien</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">SanPhẩm</a>
+            <a class="nav-link" href="/san-pham/hien-thi">SanPhẩm</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/khach-hang/hien-thi">Khách Hàng </a>
@@ -36,6 +36,7 @@
         <a href="/chuc-vu/hien-thi">chức vụ </a>
     </p>
     <br>
+    <h2>nhân viên </h2>
     <form method="post" action="/nhan-vien/add" style="display: flex">
         <div style="float: left">
             <p>id : <input type="text" value="${nvs.id}" name="id" readonly></p>

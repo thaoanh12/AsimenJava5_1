@@ -23,7 +23,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @ToString
-public class NSX {
+public class Nsx {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.UUID)
