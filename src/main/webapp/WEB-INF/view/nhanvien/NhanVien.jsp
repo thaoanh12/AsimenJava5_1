@@ -41,31 +41,40 @@
         <div style="float: left">
             <p>id : <input type="text" value="${nvs.id}" name="id" readonly></p>
             <p> mã : <input type="text" value="${nvs.ma}" name="ma"></p>
+            <p style="color: red">${thongBao}</p>
             <p> họ : <input type="text" value="${nvs.ho}" name="ho"></p>
+            <p style="color: red">${thongBao}</p>
             <p> tên : <input type="text" value="${nvs.ten}" name="ten"></p>
+            <p style="color: red">${thongBao}</p>
             <p> tên đệm : <input type="text" value="${nvs.tenDem}" name="tenDem"></p>
+            <p style="color: red">${thongBao}</p>
             <p> giới tính :
                 <input type="radio" value="nam" ${nvs.gioiTinh == "nam" ? "checked" : ""} name="gioiTinh"> nam
                 <input type="radio" value="nữ" ${nvs.gioiTinh == "nữ" ? "checked" : ""} name="gioiTinh"> nữ
             </p>
-            <p> ngày sinh : <input type="text" value="${nvs.ngaysinh}" name="ngaySinh"></p>
+            <p style="color: red">${thongBao}</p>
+            <p> ngày sinh : <input type="date" value="${nvs.ngaysinh}" name="ngaySinh"></p>
+            <p style="color: red">${thongBao}</p>
         </div>
 
         <div style="float: left ; margin-left: 30px">
             <p> địa chỉ : <input type="text" value="${nvs.diaChi}" name="diaChi"></p>
+            <p style="color: red">${thongBao}</p>
             <p> SĐT : <input type="text" value="${nvs.sdt}" name="sdt"></p>
+            <p style="color: red">${thongBao}</p>
             <p> mật khẩu : <input type="password" value="${nvs.matKhau}" name="matKhau"></p>
+            <p style="color: red">${thongBao}</p>
             <p>chức vụ :
                 <select name="chucVu">
                     <c:forEach var="cv" items="${cv}">
-                        <option value="${cv.id}">${cv.ten}</option>
+                        <option value="${cv.id}" ${nvs.idCv.id == cv.id ?"selected" : ""}>${cv.ten}</option>
                     </c:forEach>
                 </select>
             </p>
             <p>cửa hàng :
                 <select name="cuaHang">
                     <c:forEach var="ch" items="${ch}">
-                        <option value="${ch.id}">${ch.ten}</option>
+                        <option value="${ch.id}" ${nvs.idCh.id == ch.id ?"selected" : ""}>${ch.ten}</option>
                     </c:forEach>
                 </select>
             </p>
@@ -73,6 +82,7 @@
                 <input type="radio" value="0" ${nvs.trangThai == 0 ? "checked" : ""} name="trangThai"> đang đi làm
                 <input type="radio" value="1" ${nvs.trangThai == 1 ? "checked" : ""} name="trangThai"> nghỉ làm
             </p>
+            <p style="color: red">${thongBao}</p>
             <button style="height: 30px">Add</button>
             <button formaction="/nhan-vien/update" style="height: 30px">update</button>
         </div>

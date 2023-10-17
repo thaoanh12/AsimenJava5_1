@@ -4,12 +4,15 @@ import com.example.demo.entity.MauSac;
 import com.example.demo.entity.SanPham;
 import com.example.demo.repository.MauSacRepository;
 import com.example.demo.service.MauSacService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,12 +46,18 @@ public class MauSacController {
     @PostMapping("/mau-sac/add")
     public String add(
             @RequestParam("ma") String ma,
-            @RequestParam("ten") String ten
+            @RequestParam("ten") String ten,
+            Model model
     ) {
         MauSac ds = MauSac.builder()
                 .ma(ma)
                 .ten(ten)
                 .build();
+
+        if (ma == "" || ten == "") {
+            model.addAttribute("thongBao", "dữ liệu không được để trống ");
+            return "mausac/MauSac" ;
+        }
         mauSacService.add(ds);
         return "redirect:/mau-sac/hien-thi";
     }

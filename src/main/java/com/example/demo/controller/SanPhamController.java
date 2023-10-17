@@ -43,12 +43,16 @@ public class SanPhamController {
     @PostMapping("/san-pham/add")
     public String add(
             @RequestParam("ma") String ma,
-            @RequestParam("ten") String ten
+            @RequestParam("ten") String ten , Model model
     ) {
         SanPham ds = SanPham.builder()
                 .ma(ma)
                 .ten(ten)
                 .build();
+        if (ma == "" || ten == "") {
+            model.addAttribute("thongBao", "dữ liệu không được để trống ");
+            return "sanpham/SanPham" ;
+        }
         sanPhamService.add(ds);
         return "redirect:/san-pham/hien-thi";
     }

@@ -56,7 +56,7 @@ public class NhanVienController {
             @RequestParam("matKhau") String matKhau,
             @RequestParam("chucVu") String chucVu,
             @RequestParam("cuaHang") String cuaHang,
-            @RequestParam("trangThai") String trangThai
+            @RequestParam("trangThai") String trangThai , Model model
 
     ) {
         CuaHang ch = cuaHangService.detail(UUID.fromString(cuaHang)).get();
@@ -75,6 +75,12 @@ public class NhanVienController {
                 .idCh(ch)
                 .trangThai(Integer.valueOf(trangThai))
                 .build();
+//        if(ma == "" || ho == "" || ten =="" ||tendem =="" || ngaySinh == ""
+//                || diaChi == "" || sdt == "" || matKhau == "" || trangThai == ""
+//        ){
+//            model.addAttribute("thongBao" , "dữ liệu không được để trống ");
+//            return "nhanvien/NhanVien";
+//        }
         nhanVienService.add(nv);
 
         return "redirect:/nhan-vien/hien-thi";
@@ -109,7 +115,7 @@ public class NhanVienController {
             @RequestParam("chucVu") String chucVu,
             @RequestParam("cuaHang") String cuaHang,
             @RequestParam("trangThai") String trangThai,
-            @RequestParam("id") UUID id
+            @RequestParam("id") UUID id , Model model
 
     ) {
         CuaHang ch = cuaHangService.detail(UUID.fromString(cuaHang)).get();
@@ -129,6 +135,12 @@ public class NhanVienController {
                 .idCh(ch)
                 .trangThai(Integer.valueOf(trangThai))
                 .build();
+//        if(ma == "" || ho == "" || ten =="" ||tendem =="" || ngaySinh == ""
+//        || diaChi == "" || sdt == "" || matKhau == "" || trangThai == ""
+//        ){
+//           model.addAttribute("thongBao" , "dữ liệu không được để trống ");
+//           return "nhanvien/NhanVien";
+//        }
         nhanVienService.update(nv);
 
         return "redirect:/nhan-vien/hien-thi";

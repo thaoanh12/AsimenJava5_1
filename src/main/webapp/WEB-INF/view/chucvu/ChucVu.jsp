@@ -39,7 +39,9 @@
     <form method="post" action="/chuc-vu/add">
         <p>id : <input type="text" value="${cvs.id}" name="id" readonly></p>
         <p> mã : <input type="text" value="${cvs.ma}" name="ma"></p>
+        <p style="color: red">${thongBao}</p>
         <p> tên : <input type="text" value="${cvs.ten}" name="ten"></p>
+        <p style="color: red">${thongBao}</p>
         <button>Add</button>
         <button formaction="/chuc-vu/update">update</button>
     </form>

@@ -43,12 +43,16 @@ public class DongSpController {
     @PostMapping("/dongsp/add")
     public String add(
             @RequestParam("ma") String ma,
-            @RequestParam("ten") String ten
+            @RequestParam("ten") String ten , Model model
     ) {
         DongSP ds = DongSP.builder()
                 .ma(ma)
                 .ten(ten)
                 .build();
+        if (ma == "" || ten == "") {
+            model.addAttribute("thongBao", "dữ liệu không được để trống ");
+            return "dongsp/DongSp" ;
+        }
         dongSpService.add(ds);
         return "redirect:/dongsp/hien-thi";
     }

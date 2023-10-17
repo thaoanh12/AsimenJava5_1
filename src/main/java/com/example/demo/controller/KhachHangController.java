@@ -43,7 +43,7 @@ public class KhachHangController {
                               @RequestParam("diaChi") String diaChi,
                               @RequestParam("thanhPho") String thanhPho,
                               @RequestParam("quocGia") String quocGia,
-                              @RequestParam("matKhau") String matKhau
+                              @RequestParam("matKhau") String matKhau , Model model
     ) {
         KhachHang ds = KhachHang.builder()
                 .ma(ma)
@@ -57,7 +57,13 @@ public class KhachHangController {
                 .matKhau(matKhau)
                 .quocGia(quocGia)
                 .build();
-        khachHangService.add(ds);
+        if (ma == "" || ten == "" || ho == "" || tenDem == "" || ngaySinh == "" || sdt == "" || diaChi == "" ||
+        thanhPho == "" || matKhau == "" || quocGia == ""
+        ){
+            model.addAttribute("thongBao" ,"dữ liệu không được để trống !!!");
+            return "khachhang/KhachHang";
+        }
+            khachHangService.add(ds);
         return "redirect:/khach-hang/hien-thi";
     }
 

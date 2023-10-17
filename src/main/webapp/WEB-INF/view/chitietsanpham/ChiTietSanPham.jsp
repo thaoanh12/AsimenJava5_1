@@ -46,8 +46,11 @@
             <p> năm bán hàng: <input type="text" value="${ctsps.namBh}" name="namBh"></p>
             <p> số lượng tồn : <input type="text" value="${ctsps.soLuongTon}" name="soLuongTon"></p>
             <p> giá nhập  : <input type="text" value="${ctsps.giaNhap}" name="giaNhap"></p>
+            <p style="color: red">${thongBao}</p>
             <p> giá bán  : <input type="text" value="${ctsps.giaBan}" name="giaBan"></p>
+            <p style="color: red">${thongBao}</p>
             <p> mô tả  : <input type="text" value="${ctsps.moTa}" name="moTa"></p>
+            <p style="color: red">${thongBao}</p>
         </div>
 
         <div style="float: left ; margin-left: 30px">

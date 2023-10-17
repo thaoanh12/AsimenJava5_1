@@ -37,18 +37,28 @@
         <div style="float: left">
             <p>id : <input type="text" value="${khs.id}" name="id" readonly></p>
             <p> mã : <input type="text" value="${khs.ma}" name="ma"></p>
+            <p style="color: red">${thongBao}</p>
             <p> họ : <input type="text" value="${khs.ho}" name="ho"></p>
+            <p style="color: red">${thongBao}</p>
             <p> tên : <input type="text" value="${khs.ten}" name="ten"></p>
+            <p style="color: red">${thongBao}</p>
             <p> tên đệm : <input type="text" value="${khs.tenDem}" name="tenDem"></p>
-            <p> ngày sinh : <input type="text" value="${khs.ngaySinh}" name="ngaySinh"></p>
+            <p style="color: red">${thongBao}</p>
+            <p> ngày sinh : <input type="date" value="${khs.ngaySinh}" name="ngaySinh"></p>
+            <p style="color: red">${thongBao}</p>
         </div>
 
         <div style="float: left ; margin-left: 30px">
             <p> địa chỉ : <input type="text" value="${khs.diaChi}" name="diaChi"></p>
+            <p style="color: red">${thongBao}</p>
             <p> SĐT : <input type="text" value="${khs.sdt}" name="sdt"></p>
+            <p style="color: red">${thongBao}</p>
             <p> thành phố : <input type="text" value="${khs.thanhPho}" name="thanhPho"></p>
+            <p style="color: red">${thongBao}</p>
             <p> quốc gia : <input type="text" value="${khs.quocGia}" name="quocGia"></p>
+            <p style="color: red">${thongBao}</p>
             <p> mật khẩu : <input type="password" value="${khs.matKhau}" name="matKhau"></p>
+            <p style="color: red">${thongBao}</p>
             <button style="height: 30px">Add</button>
             <button formaction="/khach-hang/update" style="height: 30px">update</button>
         </div>

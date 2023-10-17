@@ -38,7 +38,7 @@ public class CuaHangController {
                              @RequestParam("ten") String ten,
                              @RequestParam("diaChi") String diaChi,
                              @RequestParam("thanhPho") String thanhPho,
-                             @RequestParam("quocGia") String quocGia
+                             @RequestParam("quocGia") String quocGia , Model model
     ) {
         CuaHang ds = CuaHang.builder()
                 .ma(ma)
@@ -47,6 +47,10 @@ public class CuaHangController {
                 .thanhPho(thanhPho)
                 .quocGia(quocGia)
                 .build();
+        if(ma == "" || ten == "" || diaChi == "" || thanhPho == "" || quocGia == ""){
+            model.addAttribute("thongBao" , "dữ liệu không được để trống !!");
+            return "cuahang/CuaHang";
+        }
         cuaHangService.add(ds);
         return "redirect:/cua-hang/hien-thi";
     }

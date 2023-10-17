@@ -80,7 +80,7 @@ public class ChiTietSanPhamController {
             @RequestParam("idSp") UUID idSp,
             @RequestParam("idDsp") UUID idDsp,
             @RequestParam("idMauSac") UUID idMauSac,
-            @RequestParam("idNsx") UUID idNsx
+            @RequestParam("idNsx") UUID idNsx , Model model
 //            @RequestParam("id") UUID id
 
     ) {
@@ -100,6 +100,10 @@ public class ChiTietSanPhamController {
                 .idNsx(nsx)
                 .idDongSp(dsp)
                 .build();
+//        if( giaBan == null || giaNhap == null || moTa == "" ){
+//            model.addAttribute("thongBao" , "dữ liệu không được để trống !!");
+//            return "chitietsanpham/ChiTietSanPham";
+//        }
         chiTietSanPhamService.add(ds);
 
         return "redirect:/chi-tiet-san-pham/hien-thi";

@@ -42,12 +42,16 @@ public class NsxController {
     @PostMapping("/nsx-add")
     public String add(
             @RequestParam("ma") String ma,
-            @RequestParam("ten") String ten
+            @RequestParam("ten") String ten , Model model
     ) {
         Nsx ds = Nsx.builder()
                 .ma(ma)
                 .ten(ten)
                 .build();
+        if (ma == "" || ten == "") {
+            model.addAttribute("thongBao", "dữ liệu không được để trống ");
+            return "nsx/Nsx" ;
+        }
         nsxService.add(ds);
         return "redirect:/nsx-hien-thi";
     }

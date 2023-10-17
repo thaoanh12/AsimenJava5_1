@@ -42,7 +42,9 @@
     <form method="post" action="/dongsp/add">
         <p>id : <input type="text" value="${nsxs.id}" name="id" readonly></p>
         <p> mã : <input type="text" value="${nsxs.ma}" name="ma"></p>
+        <p style="color: red">${thongBao}</p>
         <p> tên : <input type="text" value="${nsxs.ten}" name="ten"></p>
+        <p style="color: red">${thongBao}</p>
         <button>Add</button>
         <button formaction="/dongsp/update">update</button>
     </form>

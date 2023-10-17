@@ -40,10 +40,15 @@
     <form method="post" action="/cua-hang/add">
         <p>id : <input type="text" value="${chs.id}" name="id" readonly></p>
         <p> mã : <input type="text" value="${chs.ma}" name="ma"></p>
+        <p style="color: red">${thongBao}</p>
         <p> tên : <input type="text" value="${chs.ten}" name="ten"></p>
+        <p style="color: red">${thongBao}</p>
         <p> địa chỉ : <input type="text" value="${chs.diaChi}" name="diaChi"></p>
+        <p style="color: red">${thongBao}</p>
         <p> thành phố : <input type="text" value="${chs.thanhPho}" name="thanhPho"></p>
+        <p style="color: red">${thongBao}</p>
         <p> quốc gia : <input type="text" value="${chs.quocGia}" name="quocGia"></p>
+        <p style="color: red">${thongBao}</p>
         <button>Add</button>
         <button formaction="/cua-hang/update">update</button>
     </form>

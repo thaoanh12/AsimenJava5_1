@@ -42,12 +42,16 @@ public class ChucVuController {
 
     @PostMapping("/chuc-vu/add")
     public String add(@RequestParam("ma") String ma,
-                      @RequestParam("ten") String ten
+                      @RequestParam("ten") String ten , Model model
     ) {
         ChucVu ds = ChucVu.builder()
                 .ma(ma)
                 .ten(ten)
                 .build();
+        if (ma == "" || ten == "") {
+            model.addAttribute("thongBao", "dữ liệu không được để trống ");
+            return "chucvu/ChucVu" ;
+        }
         chucVuService.add(ds);
         return "redirect:/chuc-vu/hien-thi";
     }
