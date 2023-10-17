@@ -27,9 +27,9 @@ public class MauSac {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
+    private UUID id;
     @Column(name = "Ma")
-    private String ma ;
+    private String ma;
     @Column(name = "Ten")
-    private String ten ;
+    private String ten;
 }

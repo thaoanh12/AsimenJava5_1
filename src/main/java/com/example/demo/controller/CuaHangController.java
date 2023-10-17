@@ -20,25 +20,26 @@ import java.util.UUID;
 @Controller
 public class CuaHangController {
     @Autowired
-    private CuaHangService cuaHangService ;
+    private CuaHangService cuaHangService;
     @Autowired
-    private CuaHangRepository cuaHangRepository ;
+    private CuaHangRepository cuaHangRepository;
 
     @GetMapping("/cua-hang/hien-thi")
-    public String hienthi(Model model , @RequestParam(name = "p")Optional<Integer> p){
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String hienthi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<CuaHang> ds = cuaHangRepository.findAll(pageable);
-        model.addAttribute("ch" , ds);
-        model.addAttribute("p" , ds.getTotalElements());
+        model.addAttribute("ch", ds);
+        model.addAttribute("p", ds.getTotalElements());
         return "cuahang/CuaHang";
     }
+
     @PostMapping("/cua-hang/add")
-    public String cuaHangAdd( @RequestParam("ma") String ma,
-                              @RequestParam("ten") String ten,
-                              @RequestParam("diaChi") String diaChi,
-                              @RequestParam("thanhPho") String thanhPho,
-                              @RequestParam("quocGia") String quocGia
-                              ){
+    public String cuaHangAdd(@RequestParam("ma") String ma,
+                             @RequestParam("ten") String ten,
+                             @RequestParam("diaChi") String diaChi,
+                             @RequestParam("thanhPho") String thanhPho,
+                             @RequestParam("quocGia") String quocGia
+    ) {
         CuaHang ds = CuaHang.builder()
                 .ma(ma)
                 .ten(ten)
@@ -49,25 +50,28 @@ public class CuaHangController {
         cuaHangService.add(ds);
         return "redirect:/cua-hang/hien-thi";
     }
+
     @GetMapping("/cua-hang/remover/{id}")
-    public String remover(@PathVariable("id")UUID id){
+    public String remover(@PathVariable("id") UUID id) {
         cuaHangService.delete(id);
         return "redirect:/cua-hang/hien-thi";
     }
+
     @GetMapping("/cua-hang/detail/{id}")
-    public String detail(@PathVariable("id") UUID id ,Model model){
+    public String detail(@PathVariable("id") UUID id, Model model) {
         CuaHang ds = cuaHangService.detail(id).get();
-        model.addAttribute("chs" , ds);
+        model.addAttribute("chs", ds);
         return "cuahang/CuaHang";
     }
+
     @PostMapping("/cua-hang/update")
-    public String cuaHangupdate( @RequestParam("ma") String ma,
-                              @RequestParam("ten") String ten,
-                              @RequestParam("diaChi") String diaChi,
-                              @RequestParam("thanhPho") String thanhPho,
-                              @RequestParam("quocGia") String quocGia,
-                                 @RequestParam("id") UUID id
-    ){
+    public String cuaHangupdate(@RequestParam("ma") String ma,
+                                @RequestParam("ten") String ten,
+                                @RequestParam("diaChi") String diaChi,
+                                @RequestParam("thanhPho") String thanhPho,
+                                @RequestParam("quocGia") String quocGia,
+                                @RequestParam("id") UUID id
+    ) {
         CuaHang ds = CuaHang.builder()
                 .id(id)
                 .ma(ma)

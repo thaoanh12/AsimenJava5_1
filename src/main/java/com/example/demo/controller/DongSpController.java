@@ -21,28 +21,30 @@ import java.util.UUID;
 @Controller
 public class DongSpController {
     @Autowired
-    private DongSpRepository dongSpRepository ;
+    private DongSpRepository dongSpRepository;
     @Autowired
-    private DongSpService dongSpService ;
+    private DongSpService dongSpService;
 
     @GetMapping("/dongsp/hien-thi")
-    public String hienthi(Model model , @RequestParam(name = "p") Optional<Integer> p ){
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String hienthi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<DongSP> page = dongSpRepository.findAll(pageable);
-        model.addAttribute("nsx" , page);
-        model.addAttribute("p" , page.getTotalElements());
+        model.addAttribute("nsx", page);
+        model.addAttribute("p", page.getTotalElements());
         return "dongsp/DongSp";
     }
+
     @GetMapping("/dongsp/detail/{id}")
-    public String detail(@PathVariable("id") UUID id , Model model){
-        model.addAttribute("nsxs" , dongSpService.detail(id).get());
-        return"dongsp/DongSp";
+    public String detail(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("nsxs", dongSpService.detail(id).get());
+        return "dongsp/DongSp";
     }
+
     @PostMapping("/dongsp/add")
     public String add(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten
-    ){
+    ) {
         DongSP ds = DongSP.builder()
                 .ma(ma)
                 .ten(ten)
@@ -50,12 +52,13 @@ public class DongSpController {
         dongSpService.add(ds);
         return "redirect:/dongsp/hien-thi";
     }
+
     @PostMapping("/dongsp/update")
     public String update(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten,
             @RequestParam("id") UUID id
-    ){
+    ) {
         DongSP ds = DongSP.builder()
                 .id(id)
                 .ma(ma)
@@ -64,9 +67,10 @@ public class DongSpController {
         dongSpService.update(ds);
         return "redirect:/dongsp/hien-thi";
     }
+
     @GetMapping("/dongsp/remover/{id}")
-    public String remover(@PathVariable("id") UUID id ,Model model){
+    public String remover(@PathVariable("id") UUID id, Model model) {
         dongSpService.delete(id);
-        return"redirect:/dongsp/hien-thi";
+        return "redirect:/dongsp/hien-thi";
     }
 }

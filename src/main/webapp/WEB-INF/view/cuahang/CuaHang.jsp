@@ -43,7 +43,7 @@
         <p> tên : <input type="text" value="${chs.ten}" name="ten"></p>
         <p> địa chỉ : <input type="text" value="${chs.diaChi}" name="diaChi"></p>
         <p> thành phố : <input type="text" value="${chs.thanhPho}" name="thanhPho"></p>
-        <p> quốc gia  : <input type="text" value="${chs.quocGia}" name="quocGia"></p>
+        <p> quốc gia : <input type="text" value="${chs.quocGia}" name="quocGia"></p>
         <button>Add</button>
         <button formaction="/cua-hang/update">update</button>
     </form>
@@ -54,9 +54,9 @@
             <td>id</td>
             <td>mã</td>
             <td>Tên</td>
-            <td>địa chỉ </td>
-            <td>thành phố </td>
-            <td>quốc gia </td>
+            <td>địa chỉ</td>
+            <td>thành phố</td>
+            <td>quốc gia</td>
             <td>Action</td>
         </tr>
         <c:forEach var="ch" items="${ch.content}">

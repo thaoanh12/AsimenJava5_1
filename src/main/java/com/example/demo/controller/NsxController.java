@@ -20,27 +20,30 @@ import java.util.UUID;
 @Controller
 public class NsxController {
     @Autowired
-    private NSXRepository nsxRepository ;
+    private NSXRepository nsxRepository;
     @Autowired
-    private NSXService nsxService ;
+    private NSXService nsxService;
+
     @GetMapping("/nsx-hien-thi")
-    public String hienthi(Model model , @RequestParam(name = "p")Optional<Integer> p ){
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String hienthi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<Nsx> page = nsxRepository.findAll(pageable);
-        model.addAttribute("nsx" , page);
-        model.addAttribute("p" , page.getTotalElements());
+        model.addAttribute("nsx", page);
+        model.addAttribute("p", page.getTotalElements());
         return "nsx/Nsx";
     }
+
     @GetMapping("/nsx-detail/{id}")
-    public String detail(@PathVariable("id") UUID id ,Model model){
-        model.addAttribute("nsxs" , nsxService.detail(id).get());
-        return"nsx/Nsx";
+    public String detail(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("nsxs", nsxService.detail(id).get());
+        return "nsx/Nsx";
     }
+
     @PostMapping("/nsx-add")
     public String add(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten
-    ){
+    ) {
         Nsx ds = Nsx.builder()
                 .ma(ma)
                 .ten(ten)
@@ -48,12 +51,13 @@ public class NsxController {
         nsxService.add(ds);
         return "redirect:/nsx-hien-thi";
     }
+
     @PostMapping("/nsx-update")
     public String update(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten,
             @RequestParam("id") UUID id
-    ){
+    ) {
         Nsx ds = Nsx.builder()
                 .id(id)
                 .ma(ma)
@@ -62,9 +66,10 @@ public class NsxController {
         nsxService.update(ds);
         return "redirect:/nsx-hien-thi";
     }
+
     @GetMapping("/nsx-remover/{id}")
-    public String remover(@PathVariable("id") UUID id ,Model model){
+    public String remover(@PathVariable("id") UUID id, Model model) {
         nsxService.delete(id);
-        return"redirect:/nsx-hien-thi";
+        return "redirect:/nsx-hien-thi";
     }
 }

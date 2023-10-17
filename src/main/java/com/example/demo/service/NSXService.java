@@ -9,8 +9,12 @@ import java.util.UUID;
 
 public interface NSXService {
     List<Nsx> getAll();
+
     void add(Nsx nsx);
+
     void update(Nsx nsx);
+
     void delete(UUID id);
+
     Optional<Nsx> detail(UUID id);
 }

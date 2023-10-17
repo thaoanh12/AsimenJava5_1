@@ -9,8 +9,12 @@ import java.util.UUID;
 
 public interface DongSpService {
     List<DongSP> getAll();
+
     void add(DongSP dongSP);
+
     void update(DongSP dongSP);
+
     void delete(UUID id);
+
     Optional<DongSP> detail(UUID id);
 }

@@ -25,11 +25,11 @@ public class ChucVuController {
     private ChucVuRepository chucVuRepository;
 
     @GetMapping("/chuc-vu/hien-thi")
-    public String chucVuHienTHi(Model model , @RequestParam(name = "p")Optional<Integer> p) {
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String chucVuHienTHi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<ChucVu> ds = chucVuRepository.findAll(pageable);
         model.addAttribute("cv", ds);
-        model.addAttribute("p" , ds.getTotalElements());
+        model.addAttribute("p", ds.getTotalElements());
 
         return "chucvu/ChucVu";
     }
@@ -67,7 +67,7 @@ public class ChucVuController {
     }
 
     @GetMapping("/chuc-vu/remover/{id}")
-    public String remover(@PathVariable("id") String id , Model model ) {
+    public String remover(@PathVariable("id") String id, Model model) {
         chucVuService.delete(UUID.fromString(id));
         return "redirect:/chuc-vu/hien-thi";
     }

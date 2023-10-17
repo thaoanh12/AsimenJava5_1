@@ -8,9 +8,13 @@ import java.util.UUID;
 
 public interface ChucVuService {
     List<ChucVu> getAll();
+
     void add(ChucVu chucVu);
+
     void update(ChucVu chucVu);
+
     void delete(UUID id);
+
     Optional<ChucVu> detail(UUID id);
 
 }

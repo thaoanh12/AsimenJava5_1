@@ -29,60 +29,63 @@ import java.util.UUID;
 @Controller
 public class ChiTietSanPhamController {
     @Autowired
-    private ChiTietSanPhamRepository chiTietSanPhamRepository ;
+    private ChiTietSanPhamRepository chiTietSanPhamRepository;
     @Autowired
-    private ChiTietSanPhamService chiTietSanPhamService ;
+    private ChiTietSanPhamService chiTietSanPhamService;
     @Autowired
-    private MauSacService mauSacService ;
+    private MauSacService mauSacService;
     @Autowired
-    private SanPhamService sanPhamService ;
+    private SanPhamService sanPhamService;
     @Autowired
-    private DongSpService dongSpService ;
+    private DongSpService dongSpService;
     @Autowired
-    private NSXService nsxService ;
+    private NSXService nsxService;
 
     @GetMapping("/chi-tiet-san-pham/hien-thi")
-    public String hienthi(Model model , @RequestParam(name = "p")Optional<Integer> p){
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String hienthi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<ChiTietSanPham> ds = chiTietSanPhamRepository.findAll(pageable);
-        model.addAttribute("ctsp" , ds);
-        model.addAttribute("p" , ds.getTotalElements());
-        model.addAttribute("sp" , sanPhamService.getAll());
-        model.addAttribute("ms" , mauSacService.getAll());
-        model.addAttribute("dsp" , dongSpService.getAll());
-        model.addAttribute("nsx" , nsxService.getAll());
+        model.addAttribute("ctsp", ds);
+        model.addAttribute("p", ds.getTotalElements());
+        model.addAttribute("sp", sanPhamService.getAll());
+        model.addAttribute("ms", mauSacService.getAll());
+        model.addAttribute("dsp", dongSpService.getAll());
+        model.addAttribute("nsx", nsxService.getAll());
         return "chitietsanpham/ChiTietSanPham";
     }
+
     @GetMapping("/chi-tiet-san-pham/remover/{id}")
-    public String delete(@PathVariable("id")UUID id){
+    public String delete(@PathVariable("id") UUID id) {
         chiTietSanPhamService.delete(id);
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
+
     @GetMapping("/chi-tiet-san-pham/detail/{id}")
-    public String detail(@PathVariable("id") UUID id , Model model){
-        model.addAttribute("sp" , sanPhamService.getAll());
-        model.addAttribute("ms" , mauSacService.getAll());
-        model.addAttribute("dsp" , dongSpService.getAll());
-        model.addAttribute("nsx" , nsxService.getAll());
-        model.addAttribute("ctsps" , chiTietSanPhamService.detail(id).get());
+    public String detail(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("sp", sanPhamService.getAll());
+        model.addAttribute("ms", mauSacService.getAll());
+        model.addAttribute("dsp", dongSpService.getAll());
+        model.addAttribute("nsx", nsxService.getAll());
+        model.addAttribute("ctsps", chiTietSanPhamService.detail(id).get());
         return "chitietsanpham/ChiTietSanPham";
     }
+
     @PostMapping("/chi-tiet-san-pham/add")
     public String add(
-            @RequestParam("namBh") int namBh ,
-            @RequestParam("soLuongTon") int soLuongTon ,
-            @RequestParam("giaNhap") Float giaNhap ,
-            @RequestParam("giaBan") Float giaBan ,
-            @RequestParam("moTa") String moTa ,
-            @RequestParam("idSp") UUID idSp ,
-            @RequestParam("idDsp") UUID idDsp ,
-            @RequestParam("idMauSac") UUID idMauSac ,
+            @RequestParam("namBh") int namBh,
+            @RequestParam("soLuongTon") int soLuongTon,
+            @RequestParam("giaNhap") Float giaNhap,
+            @RequestParam("giaBan") Float giaBan,
+            @RequestParam("moTa") String moTa,
+            @RequestParam("idSp") UUID idSp,
+            @RequestParam("idDsp") UUID idDsp,
+            @RequestParam("idMauSac") UUID idMauSac,
             @RequestParam("idNsx") UUID idNsx
 //            @RequestParam("id") UUID id
 
-    ){
-        SanPham sp  = sanPhamService.detail(idSp).get();
-        DongSP dsp  = dongSpService.detail(idDsp).get();
+    ) {
+        SanPham sp = sanPhamService.detail(idSp).get();
+        DongSP dsp = dongSpService.detail(idDsp).get();
         MauSac ms = mauSacService.detail(idMauSac).get();
         Nsx nsx = nsxService.detail(idNsx).get();
 
@@ -101,22 +104,23 @@ public class ChiTietSanPhamController {
 
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
+
     @PostMapping("/chi-tiet-san-pham/update")
     public String update(
-            @RequestParam("namBh") int namBh ,
-            @RequestParam("soLuongTon") int soLuongTon ,
-            @RequestParam("giaNhap") Float giaNhap ,
-            @RequestParam("giaBan") Float giaBan ,
-            @RequestParam("moTa") String moTa ,
-            @RequestParam("idSp") UUID idSp ,
-            @RequestParam("idDsp") UUID idDsp ,
-            @RequestParam("idMauSac") UUID idMauSac ,
+            @RequestParam("namBh") int namBh,
+            @RequestParam("soLuongTon") int soLuongTon,
+            @RequestParam("giaNhap") Float giaNhap,
+            @RequestParam("giaBan") Float giaBan,
+            @RequestParam("moTa") String moTa,
+            @RequestParam("idSp") UUID idSp,
+            @RequestParam("idDsp") UUID idDsp,
+            @RequestParam("idMauSac") UUID idMauSac,
             @RequestParam("idNsx") UUID idNsx,
             @RequestParam("id") UUID id
 
-    ){
-        SanPham sp  = sanPhamService.detail(idSp).get();
-        DongSP dsp  = dongSpService.detail(idDsp).get();
+    ) {
+        SanPham sp = sanPhamService.detail(idSp).get();
+        DongSP dsp = dongSpService.detail(idDsp).get();
         MauSac ms = mauSacService.detail(idMauSac).get();
         Nsx nsx = nsxService.detail(idNsx).get();
 

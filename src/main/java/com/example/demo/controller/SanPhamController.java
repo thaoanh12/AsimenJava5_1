@@ -21,28 +21,30 @@ import java.util.UUID;
 @Controller
 public class SanPhamController {
     @Autowired
-    private SanPhamRepository sanPhamRepository ;
+    private SanPhamRepository sanPhamRepository;
     @Autowired
-    private SanPhamService sanPhamService ;
+    private SanPhamService sanPhamService;
 
     @GetMapping("/san-pham/hien-thi")
-    public String hienthi(Model model , @RequestParam(name = "p") Optional<Integer> p ){
-        Pageable pageable = PageRequest.of(p.orElse(0) , 5);
+    public String hienthi(Model model, @RequestParam(name = "p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<SanPham> page = sanPhamRepository.findAll(pageable);
-        model.addAttribute("nsx" , page);
-        model.addAttribute("p" , page.getTotalElements());
+        model.addAttribute("nsx", page);
+        model.addAttribute("p", page.getTotalElements());
         return "sanpham/SanPham";
     }
+
     @GetMapping("/san-pham/detail/{id}")
-    public String detail(@PathVariable("id") UUID id , Model model){
-        model.addAttribute("nsxs" , sanPhamService.detail(id).get());
-        return"sanpham/SanPham";
+    public String detail(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("nsxs", sanPhamService.detail(id).get());
+        return "sanpham/SanPham";
     }
+
     @PostMapping("/san-pham/add")
     public String add(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten
-    ){
+    ) {
         SanPham ds = SanPham.builder()
                 .ma(ma)
                 .ten(ten)
@@ -50,12 +52,13 @@ public class SanPhamController {
         sanPhamService.add(ds);
         return "redirect:/san-pham/hien-thi";
     }
+
     @PostMapping("/san-pham/update")
     public String update(
-            @RequestParam("ma") String ma ,
+            @RequestParam("ma") String ma,
             @RequestParam("ten") String ten,
             @RequestParam("id") UUID id
-    ){
+    ) {
         SanPham ds = SanPham.builder()
                 .id(id)
                 .ma(ma)
@@ -64,9 +67,10 @@ public class SanPhamController {
         sanPhamService.update(ds);
         return "redirect:/san-pham/hien-thi";
     }
+
     @GetMapping("/san-pham/remover/{id}")
-    public String remover(@PathVariable("id") UUID id ,Model model){
+    public String remover(@PathVariable("id") UUID id, Model model) {
         sanPhamService.delete(id);
-        return"redirect:/san-pham/hien-thi";
+        return "redirect:/san-pham/hien-thi";
     }
 }

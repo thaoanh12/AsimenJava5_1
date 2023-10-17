@@ -26,38 +26,39 @@ public class NhanVienController {
     @Autowired
     private NhanVienRepository nhanVienRepository;
     @Autowired
-    private NhanVienService nhanVienService ;
+    private NhanVienService nhanVienService;
     @Autowired
-    private CuaHangService cuaHangService ;
+    private CuaHangService cuaHangService;
     @Autowired
-    private ChucVuService chucVuService ;
+    private ChucVuService chucVuService;
 
     @GetMapping("/nhan-vien/hien-thi")
-    public String nhanVienHienThi(Model model , @RequestParam("p")Optional<Integer> p){
-        Pageable pageable = PageRequest.of(p.orElse(0) ,5);
+    public String nhanVienHienThi(Model model, @RequestParam("p") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<NhanVien> ds = nhanVienRepository.findAll(pageable);
-        model.addAttribute("nv" , ds );
-        model.addAttribute("p" , ds.getTotalElements());
-        model.addAttribute("cv" , chucVuService.getAll());
-        model.addAttribute("ch" , cuaHangService.getAll());
+        model.addAttribute("nv", ds);
+        model.addAttribute("p", ds.getTotalElements());
+        model.addAttribute("cv", chucVuService.getAll());
+        model.addAttribute("ch", cuaHangService.getAll());
         return "nhanvien/NhanVien";
     }
+
     @PostMapping("/nhan-vien/add")
     public String nhanvienadd(
-            @RequestParam("ma") String ma ,
-            @RequestParam("ho") String ho ,
-            @RequestParam("ten") String ten ,
-            @RequestParam("tenDem") String tendem ,
-            @RequestParam("ngaySinh") String ngaySinh ,
-            @RequestParam("diaChi") String diaChi ,
-            @RequestParam("sdt") String sdt ,
-            @RequestParam("gioiTinh") String gioiTinh ,
-            @RequestParam("matKhau") String matKhau ,
-            @RequestParam("chucVu") String chucVu ,
-            @RequestParam("cuaHang") String cuaHang ,
+            @RequestParam("ma") String ma,
+            @RequestParam("ho") String ho,
+            @RequestParam("ten") String ten,
+            @RequestParam("tenDem") String tendem,
+            @RequestParam("ngaySinh") String ngaySinh,
+            @RequestParam("diaChi") String diaChi,
+            @RequestParam("sdt") String sdt,
+            @RequestParam("gioiTinh") String gioiTinh,
+            @RequestParam("matKhau") String matKhau,
+            @RequestParam("chucVu") String chucVu,
+            @RequestParam("cuaHang") String cuaHang,
             @RequestParam("trangThai") String trangThai
 
-    ){
+    ) {
         CuaHang ch = cuaHangService.detail(UUID.fromString(cuaHang)).get();
         ChucVu cv = chucVuService.detail(UUID.fromString(chucVu)).get();
         NhanVien nv = NhanVien.builder()
@@ -78,36 +79,39 @@ public class NhanVienController {
 
         return "redirect:/nhan-vien/hien-thi";
     }
+
     @GetMapping("/nhan-vien/remover/{id}")
-    public String delete(@PathVariable("id") UUID id){
+    public String delete(@PathVariable("id") UUID id) {
         nhanVienService.delete(id);
         return "redirect:/nhan-vien/hien-thi";
     }
+
     @GetMapping("/nhan-vien/detail/{id}")
-    public String detail(@PathVariable("id") UUID id ,Model model){
+    public String detail(@PathVariable("id") UUID id, Model model) {
         NhanVien ds = nhanVienService.detail(id).get();
-        model.addAttribute("nvs" , ds);
-        model.addAttribute("cv" , chucVuService.getAll());
-        model.addAttribute("ch" , cuaHangService.getAll());
+        model.addAttribute("nvs", ds);
+        model.addAttribute("cv", chucVuService.getAll());
+        model.addAttribute("ch", cuaHangService.getAll());
         return "nhanvien/NhanVien";
     }
+
     @PostMapping("/nhan-vien/update")
     public String nhanvienupdate(
-            @RequestParam("ma") String ma ,
-            @RequestParam("ho") String ho ,
-            @RequestParam("ten") String ten ,
-            @RequestParam("tenDem") String tendem ,
-            @RequestParam("ngaySinh") String ngaySinh ,
-            @RequestParam("diaChi") String diaChi ,
-            @RequestParam("sdt") String sdt ,
-            @RequestParam("gioiTinh") String gioiTinh ,
-            @RequestParam("matKhau") String matKhau ,
-            @RequestParam("chucVu") String chucVu ,
-            @RequestParam("cuaHang") String cuaHang ,
+            @RequestParam("ma") String ma,
+            @RequestParam("ho") String ho,
+            @RequestParam("ten") String ten,
+            @RequestParam("tenDem") String tendem,
+            @RequestParam("ngaySinh") String ngaySinh,
+            @RequestParam("diaChi") String diaChi,
+            @RequestParam("sdt") String sdt,
+            @RequestParam("gioiTinh") String gioiTinh,
+            @RequestParam("matKhau") String matKhau,
+            @RequestParam("chucVu") String chucVu,
+            @RequestParam("cuaHang") String cuaHang,
             @RequestParam("trangThai") String trangThai,
             @RequestParam("id") UUID id
 
-    ){
+    ) {
         CuaHang ch = cuaHangService.detail(UUID.fromString(cuaHang)).get();
         ChucVu cv = chucVuService.detail(UUID.fromString(chucVu)).get();
         NhanVien nv = NhanVien.builder()

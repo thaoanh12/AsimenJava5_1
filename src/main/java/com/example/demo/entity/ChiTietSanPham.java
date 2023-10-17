@@ -29,27 +29,27 @@ public class ChiTietSanPham {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
+    private UUID id;
     @Column(name = "NamBH")
-    private int namBh ;
+    private int namBh;
     @Column(name = "MoTa")
-    private String moTa ;
+    private String moTa;
     @Column(name = "SoLuongTon")
-    private int soLuongTon ;
+    private int soLuongTon;
     @Column(name = "GiaNhap")
-    private Float giaNhap ;
+    private Float giaNhap;
     @Column(name = "GiaBan")
-    private Float giaBan ;
+    private Float giaBan;
     @ManyToOne
-    @JoinColumn(name = "IdSP" , referencedColumnName = "Id")
-    private SanPham idSp ;
+    @JoinColumn(name = "IdSP", referencedColumnName = "Id")
+    private SanPham idSp;
     @ManyToOne
-    @JoinColumn(name = "IdNsx" , referencedColumnName = "Id")
-    private Nsx idNsx ;
+    @JoinColumn(name = "IdNsx", referencedColumnName = "Id")
+    private Nsx idNsx;
     @ManyToOne
-    @JoinColumn(name = "IdMauSac" , referencedColumnName = "Id")
-    private MauSac idMauSac ;
+    @JoinColumn(name = "IdMauSac", referencedColumnName = "Id")
+    private MauSac idMauSac;
     @ManyToOne
-    @JoinColumn(name = "IdDongSP" , referencedColumnName = "Id")
-    private DongSP idDongSp ;
+    @JoinColumn(name = "IdDongSP", referencedColumnName = "Id")
+    private DongSP idDongSp;
 }

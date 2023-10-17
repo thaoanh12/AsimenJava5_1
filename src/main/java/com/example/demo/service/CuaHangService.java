@@ -9,8 +9,12 @@ import java.util.UUID;
 
 public interface CuaHangService {
     List<CuaHang> getAll();
+
     void add(CuaHang cuaHang);
+
     void update(CuaHang cuaHang);
+
     void delete(UUID id);
+
     Optional<CuaHang> detail(UUID id);
 }

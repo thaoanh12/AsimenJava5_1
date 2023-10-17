@@ -9,8 +9,12 @@ import java.util.UUID;
 
 public interface SanPhamService {
     List<SanPham> getAll();
+
     void add(SanPham sanPham);
+
     void update(SanPham sanPham);
+
     void delete(UUID id);
+
     Optional<SanPham> detail(UUID id);
 }

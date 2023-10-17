@@ -8,8 +8,12 @@ import java.util.UUID;
 
 public interface ChiTietSanPhamService {
     List<ChiTietSanPham> getAll();
-    void add(ChiTietSanPham chiTietSanPham );
-    void update(ChiTietSanPham chiTietSanPham );
+
+    void add(ChiTietSanPham chiTietSanPham);
+
+    void update(ChiTietSanPham chiTietSanPham);
+
     void delete(UUID id);
+
     Optional<ChiTietSanPham> detail(UUID id);
 }

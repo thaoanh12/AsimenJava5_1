@@ -28,26 +28,26 @@ public class KhachHang {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
+    private UUID id;
     @Column(name = "Ma")
-    private String ma ;
+    private String ma;
     @Column(name = "ten")
     private String ten;
     @Column(name = "TenDem")
-    private String tenDem ;
+    private String tenDem;
     @Column(name = "Ho")
-    private String ho ;
+    private String ho;
     @Column(name = "NgaySinh")
-    private String ngaySinh ;
+    private String ngaySinh;
     @Column(name = "Sdt")
-    private String sdt ;
+    private String sdt;
     @Column(name = "DiaChi")
-    private String diaChi ;
+    private String diaChi;
     @Column(name = "ThanhPho")
-    private String thanhPho ;
+    private String thanhPho;
     @Column(name = "QuocGia")
-    private String quocGia ;
+    private String quocGia;
     @Column(name = "MatKhau")
-    private String matKhau ;
+    private String matKhau;
 
 }
